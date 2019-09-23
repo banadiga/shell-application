@@ -7,7 +7,10 @@ import org.springframework.shell.standard.ShellCommandGroup
 import org.springframework.shell.standard.ShellComponent
 import org.springframework.shell.standard.ShellMethod
 import org.springframework.shell.standard.ShellMethodAvailability
-import ua.org.ebank.clientbank.Account
+import org.springframework.shell.table.BeanListTableModel
+import org.springframework.shell.table.BorderStyle
+import org.springframework.shell.table.Table
+import org.springframework.shell.table.TableBuilder
 import ua.org.ebank.clientbank.BankClient
 
 @ShellComponent
@@ -15,9 +18,9 @@ import ua.org.ebank.clientbank.BankClient
 class AccountCli(val bankClient: BankClient) {
 
     @ShellMethod("Show my accounts.")
-    fun list(): List<Account> {
-        return bankClient.accounts()
-    }
+    fun list(): Table = TableBuilder(BeanListTableModel(bankClient.accounts(), "name", "iban.countryCode", "iban.accountNumber"))
+            .addFullBorder(BorderStyle.fancy_heavy)
+            .build()
 
     @ShellMethodAvailability
     fun checkAvailability(): Availability = if (bankClient.currentUser().isNotBlank()) {
