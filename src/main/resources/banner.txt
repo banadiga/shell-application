@@ -1,0 +1,7 @@
+${Ansi.GREEN}
+,-----.                     ,--.
+|  |) /_   ,--,--. ,--,--,  |  |,-.
+|  .-.  \ ' ,-.  | |      \ |     /
+|  '--' / \ '-'  | |  ||  | |  \  \
+`------'   `--`--' `--''--' `--'`--'
+${Ansi.BLUE}${spring.application.name}::v${application.version} ${Ansi.RED}Spring Boot::v${spring-boot.version}${Ansi.DEFAULT}
