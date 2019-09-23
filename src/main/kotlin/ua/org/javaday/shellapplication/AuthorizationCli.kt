@@ -22,4 +22,10 @@ class AuthorizationCli(val bankClient: BankClient) {
         bankClient.login(username, password)
         return "Login successful"
     }
+
+    @ShellMethod("Logout from the bank.")
+    fun logout(): String {
+        bankClient.logout()
+        return "Logout successful"
+    }
 }
