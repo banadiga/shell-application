@@ -9,6 +9,7 @@ import org.springframework.shell.table.BorderStyle
 import org.springframework.shell.table.Table
 import org.springframework.shell.table.TableBuilder
 import ua.org.ebank.clientbank.BankClient
+import ua.org.ebank.clientbank.IBAN
 
 @ShellComponent
 @ShellCommandGroup("Account commands")
@@ -26,6 +27,9 @@ class AccountCli(val bankClient: BankClient) {
                     help = "ID for accounts"
             )
             id: Long) = bankClient.account(id)
+
+    @ShellMethod("Create new account.")
+    fun accountCreate(name: String, iban: IBAN) = bankClient.create(name, iban)
 
     @ShellMethodAvailability
     fun checkAvailability(): Availability = if (bankClient.currentUser().isNotBlank()) {
