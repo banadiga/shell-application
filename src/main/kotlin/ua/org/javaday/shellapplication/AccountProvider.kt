@@ -15,7 +15,7 @@ class AccountProvider(val bankClient: BankClient) : ValueProviderSupport() {
             .map { account ->
                 CompletionProposal(account.id.toString())
                         .displayText(account.name)
-                        .displayText(account.iban.toString())
+                        .description(account.iban.toString())
                         .category("My account")
             }
             .toMutableList()
